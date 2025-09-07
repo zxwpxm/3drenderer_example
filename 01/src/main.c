@@ -8,14 +8,20 @@ SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
 uint32_t *color_buffer = NULL;
 SDL_Texture* color_buffer_texture = NULL;
-int window_width = 640;
-int window_height = 480;
+int window_width;
+int window_height;
 
 bool init() {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         return false;
     }
+
+    SDL_DisplayMode display_mode;
+    SDL_GetCurrentDisplayMode(0, &display_mode);
+    window_width = display_mode.w;
+    window_height = display_mode.h;
+
     window = SDL_CreateWindow(NULL, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_width, window_height, SDL_WINDOW_SHOWN);
     if (window == NULL) {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
