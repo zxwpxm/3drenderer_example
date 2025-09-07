@@ -1,5 +1,5 @@
 CC      := gcc
-CFLAGS  := -Wall -std=c99 $(shell sdl2-config --cflags)
+CFLAGS  := -Wall -std=c99 -LSDL2 $(shell sdl2-config --cflags)
 LDFLAGS := $(shell sdl2-config --libs)
 
 SRC     := $(wildcard src/*.c)
