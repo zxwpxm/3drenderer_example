@@ -33,6 +33,7 @@ bool init() {
         printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
         return false;
     }
+    //SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
     return true;
 }
 
@@ -72,6 +73,23 @@ void update(void) {
     // Placeholder for update logic
 }
 
+void draw_grid(void) {
+    int grid_size = 10;
+    uint32_t grid_color = 0xFF000000; // ARGB format for black
+
+    for (int x = 0; x < window_width; x += grid_size) {
+        for (int y = 0; y < window_height; y++) {
+            color_buffer[y * window_width + x] = grid_color;
+        }
+    }
+
+    for (int y = 0; y < window_height; y += grid_size) {
+        for (int x = 0; x < window_width; x++) {
+            color_buffer[y * window_width + x] = grid_color;
+        }
+    }
+}
+
 void render_color_buffer(void) {
     SDL_UpdateTexture(color_buffer_texture, NULL, color_buffer, (int)(window_width * sizeof(uint32_t)));
     SDL_RenderCopy(renderer, color_buffer_texture, NULL, NULL);
@@ -86,6 +104,7 @@ void clear_color_buffer(uint32_t color) {
 void render(void) {
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderClear(renderer);
+    draw_grid();
     render_color_buffer();
     clear_color_buffer(0xFFFFFF00); // ARGB format for red
     SDL_RenderPresent(renderer);
