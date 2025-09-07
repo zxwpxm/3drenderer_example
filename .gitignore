@@ -1,0 +1,72 @@
+# --- 빌드 산출물(객체/라이브러리/실행파일) ---
+# 객체 파일
+*.o
+*.obj
+*.lo
+
+# 정적/동적 라이브러리
+*.a
+*.la
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+
+# 실행 파일/출력물
+*.exe
+*.out
+a.out
+
+# CUDA/ROCm 산출물
+*.ptx
+*.cubin
+*.fatbin
+*.cudafe*
+*.ii
+*.hipfb
+
+# 컴파일 데이터베이스 / 태그
+compile_commands.json
+.tags
+TAGS
+
+# --- 빌드/산출 디렉터리(모든 하위 경로 포함) ---
+# 슬래시 없이 쓰면 하위 경로 어디에 있어도 매칭됩니다.
+bin/
+build/
+build-*/
+cmake-build-*/
+dist/
+lib/
+out/
+Debug/
+Release/
+
+# (선택) 빈 디렉터리 유지용 .keep 파일은 추적하고 싶다면 아래 주석 해제
+# !**/bin/.keep
+# !**/build/.keep
+# !**/out/.keep
+
+# --- 중간 파일/로그/코어덤프 ---
+*.d
+*.gcno
+*.gcda
+*.gcov
+*.log
+*.tmp
+*.swp
+*.swo
+core
+*.core
+
+# --- IDE/OS 잡동사니 ---
+# VSCode / CLion / Xcode 등
+.vscode/
+.idea/
+*.iml
+*.user
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
