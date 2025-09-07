@@ -73,6 +73,18 @@ void update(void) {
     // Placeholder for update logic
 }
 
+void draw_rect(int x, int y, int width, int height, uint32_t color) {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            int draw_x = x + j;
+            int draw_y = y + i;
+            if (draw_x >= 0 && draw_x < window_width && draw_y >= 0 && draw_y < window_height) {
+                color_buffer[draw_y * window_width + draw_x] = color;
+            }
+        }
+    }
+}
+
 void draw_grid(void) {
     int grid_size = 10;
     uint32_t grid_color = 0xFF000000; // ARGB format for black
@@ -105,6 +117,7 @@ void render(void) {
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderClear(renderer);
     draw_grid();
+    draw_rect(50, 50, 200, 200, 0xFFFF0000); // ARGB format for blue
     render_color_buffer();
     clear_color_buffer(0xFFFFFF00); // ARGB format for red
     SDL_RenderPresent(renderer);
